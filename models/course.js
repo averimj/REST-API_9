@@ -19,10 +19,22 @@ module.exports = (sequelize, DataTypes) => {
     primaryKey: true,
     autoIncrement: true
     },
-    title: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    estimatedTime: DataTypes.STRING,
-    materialsNeeded: DataTypes.STRING
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    estimatedTime: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    materialsNeeded: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Course',
