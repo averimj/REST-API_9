@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  
+
   User.init({
     id: {
     type: DataTypes.INTEGER,
@@ -50,6 +50,9 @@ module.exports = (sequelize, DataTypes) => {
     emailAddress: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: {
+        msg: 'The email you entered already exist'
+      },
       validate: {
         notNull: {
           msg: 'An email address is required'
