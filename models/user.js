@@ -11,9 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.Course, {
+        as: 'student',
+        foreignKey: {
+          fieldName: 'studentCourseId',
+          allowNull: false
+        },
+      });
     }
   };
-  
+
   User.init({
     id: {
     type: DataTypes.INTEGER,
@@ -50,12 +57,15 @@ module.exports = (sequelize, DataTypes) => {
     emailAddress: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: {
+        msg: 'The email you entered already exist'
+      },
       validate: {
         notNull: {
           msg: 'An email address is required'
         },
-        notEmpty: {
-          msg: 'Please provide an email address'
+        isEmail: {
+          msg: 'Please provide a valid email address'
         }
       }
     },
